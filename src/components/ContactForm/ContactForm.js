@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   useAddContactMutation,
   useGetContactQuery,
-} from '../../redux/contacts/contactApi';
+} from 'redux/contacts/contactApi';
 import toast from 'react-hot-toast';
 import s from './ContactForm.module.css';
 
@@ -28,9 +28,9 @@ function ContactForm() {
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const findContact = await contacts?.some(contact =>
+    const findContact = contacts?.some(contact =>
       contact.name.toLowerCase().includes(name.toLowerCase())
     );
 
@@ -38,8 +38,8 @@ function ContactForm() {
       toast.error(`${name} is already in contacts!!!`);
       return;
     }
-    console.log(name, number);
-    await addContact(name, number);
+
+    addContact({ name, number });
 
     if (isSuccess) {
       toast.success(`${name} added to contact list`);
@@ -57,8 +57,8 @@ function ContactForm() {
           className={s.input}
           type="text"
           name="name"
-          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
           onChange={handleInputChange}
@@ -70,8 +70,8 @@ function ContactForm() {
           className={s.input}
           type="tel"
           name="number"
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={number}
           onChange={handleInputChange}

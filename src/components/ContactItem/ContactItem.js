@@ -1,20 +1,21 @@
-import { useDeleteContactMutation } from '../../redux/contacts/contactApi';
 import { ThreeDots } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
+import { useDeleteContactMutation } from 'redux/contacts/contactApi';
 import s from './ContactItem.module.css';
 
-function ContactItem({ id, name, phone }) {
+function ContactItem({ contactId, name, number }) {
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
 
   return (
     <>
       <li className={s.item}>
-        {name}: {phone}
+        {name}: {number}
         <button
           disabled={isLoading}
           className={s.button}
           type="button"
           onClick={() => {
-            deleteContact(id);
+            deleteContact(contactId);
           }}
         >
           {isLoading ? (
@@ -27,5 +28,11 @@ function ContactItem({ id, name, phone }) {
     </>
   );
 }
+
+ContactItem.propTypes = {
+  contactId: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.string,
+};
 
 export default ContactItem;

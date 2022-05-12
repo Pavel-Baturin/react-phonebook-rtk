@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
-import { useGetContactQuery } from '../../redux/contacts/contactApi';
+import { useGetContactQuery } from 'redux/contacts/contactApi';
 import { TailSpin } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import ContactItem from '../ContactItem/ContactItem';
 import s from './ContactList.module.css';
 
@@ -26,9 +27,15 @@ export default function ContactList() {
       )}
       {filtredContacts &&
         !isFetching &&
-        filtredContacts.map(contact => (
-          <ContactItem key={contact.id} {...contact} />
+        filtredContacts.map(({ id, name, number }) => (
+          <ContactItem key={id} contactId={id} name={name} number={number} />
         ))}
     </ul>
   );
 }
+
+ContactList.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  number: PropTypes.string,
+};
