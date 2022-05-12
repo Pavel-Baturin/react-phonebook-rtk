@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkrtk_phonebook=self.webpackChunkrtk_phonebook||[]).push([[821],{6821:function(e,n,o){o.r(n),o.d(n,{default:function(){return r}});var s="HomePage_box__hUE9F",t="HomePage_title__tfq7Q",a="HomePage_phone__UJ+tH",c=o(5639),h=o(3329);function r(){return(0,h.jsxs)("div",{className:s,children:[(0,h.jsx)("h1",{className:t,children:"Phonebook"}),(0,h.jsx)("img",{src:c,alt:"phone",className:a})]})}},5639:function(e,n,o){e.exports=o.p+"static/media/phones.cd5ebbb00e1233ef17d4.png"}}]);
+//# sourceMappingURL=821.99f8e995.chunk.js.map
